@@ -1,16 +1,46 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import pandas as pd
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from preprocessing import preprocess_data, scaled_X
+from models import train_lda, train_mlp, evaluate_model
+#from visualization import plot_cross_correlation_heatmap, print_top_correlations_with_target
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+df = pd.read_csv('data/Industrial_fault_detection.csv')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+df_model = preprocess_data(df)
+X = df_model.drop(columns="Fault_Type")
+y = df_model["Fault_Type"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42
+)
+
+X_train_scaled, X_test_scaled = scaled_X(X_train, X_test)
+
+#LDA
+lda = train_lda(X_train_scaled, y_train)
+lda_accuracy, lda_matrix = evaluate_model(lda, X_test_scaled, y_test)
+
+print("LDA Accuracy:")
+print(lda_accuracy)
+
+print("LDA Confusion Matrix:")
+print(lda_matrix)
+
+#MLP
+mlp = train_mlp(X_train_scaled, y_train)
+mlp_accuracy, mlp_matrix = evaluate_model(mlp, X_test_scaled, y_test)
+
+print("MLP Accuracy:")
+print(mlp_accuracy)
+
+print("MLP Confusion Matrix:")
+print(mlp_matrix)
+
+
