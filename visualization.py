@@ -6,7 +6,7 @@ def plot_cross_correlation_heatmap(X):
     # Correlation between input features
     matrix = X.corr(numeric_only=True)
 
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(40,32))
 
     sns.heatmap(
         matrix,
