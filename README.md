@@ -133,9 +133,7 @@ This indicates that none of the individual features had a strong linear relation
 
 A correlation heatmap was generated to investigate relationships between input features.
 
-The analysis showed generally weak correlations between most features.
-
-No strong feature relationships were observed that could clearly explain the target variable.
+Cross-correlation analysis revealed several highly correlated FFT features. This suggests that some frequency-domain variables contain redundant information and may describe similar signal characteristics.
 
 ---
 
