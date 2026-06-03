@@ -5,7 +5,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from preprocessing import preprocess_data, scaled_X
 from models import train_lda, train_mlp, evaluate_model
-#from visualization import plot_cross_correlation_heatmap, print_top_correlations_with_target
+from visualization import plot_cross_correlation_heatmap, print_top_correlations_with_target
 
 
 df = pd.read_csv('data/Industrial_fault_detection.csv')
@@ -44,3 +44,6 @@ print("MLP Confusion Matrix:")
 print(mlp_matrix)
 
 
+print_top_correlations_with_target(X, y)
+
+plot_cross_correlation_heatmap(X)
