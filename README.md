@@ -6,6 +6,8 @@ This project investigates machine learning classification of industrial equipmen
 
 The objective is to predict the fault type of industrial equipment based on operational measurements and FFT-derived features.
 
+This was practise to the exam, so below is an extensive analysis of the code and findings to help work towards the exam.
+
 Models used:
 
 * Pearson Correlation
